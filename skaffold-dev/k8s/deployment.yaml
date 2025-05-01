@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: golang-kubernetes-deploy
+  labels:
+    app: go-pod
+spec: 
+  replicas: 3
+  selector:
+    matchLabels:
+      app: go-pod
+  template: 
+    metadata:
+      labels:
+        app: go-pod
+    spec:
+      containers:
+        - name: pod-test
+          image: akgupta47/go-pod

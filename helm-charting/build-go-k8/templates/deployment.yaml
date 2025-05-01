@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: "{{ .Release.Name }}-golang-kubernetes-deploy"
+  labels:
+    app: go-pod
+spec: 
+  replicas: {{ .Values.deploy.replicas }}
+  selector:
+    matchLabels:
+      app: go-pod
+  template: 
+    metadata:
+      labels:
+        app: go-pod
+    spec:
+      containers:
+        - name: pod-test
+          image: "{{ .Values.deploy.image.repository }}:{{ .Chart.AppVersion }}"

@@ -1,0 +1,15 @@
+# prepends all resources with prod- in their names 
+namePrefix: prod-
+# labels adds a label of tier: prod to every resource
+# resources defines the base manifests
+# defines a patch to be applied to out base and we can have as many patch as we want
+patches:
+- path: replica_count.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../base
+labels:
+- includeSelectors: true
+  pairs:
+    tier: prod
